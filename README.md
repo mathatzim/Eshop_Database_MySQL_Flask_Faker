@@ -64,5 +64,3 @@ Then open:
 - Query 5: Full product catalogue view (category/brand/options/dimensions/shop)
 - Query 6: Same as Query 5 filtered to a specific product name (example: `'Keyboard'`)
 
-## Portfolio note
-This is a **supporting** portfolio project: it’s great evidence of SQL/data-modelling skills (useful in football analytics too), but it doesn’t need to be pinned above your football/EPL work.
