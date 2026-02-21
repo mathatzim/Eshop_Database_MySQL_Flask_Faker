@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <title>FlaskTest</title>
+</head>
+ 
+<body>
+    <h2>Online Store Database</h2>
+   
+    <h3>Customer First Name | Customer Last Name | Product Name | Variation | Quantity Ordered | Order Date | Shop Name |<h4>
+    <table>
+       <tbody>
+         {% for row in data2 %}
+         <tr>
+           {% for cell in row %}
+           <td>| {{ cell }}</td>
+           {% endfor %}
+         </tr>
+         {% endfor %}
+       </tbody>
+    </table>
+    <h4>The  executed  query:<h5>{{query2}}<h5>
+ <!-- this section can be replaced by a child document -->  
+{% block body %}
+ 
+ 
+<p></p>
+ 
+ 
+{% endblock %}
+ 
+ 
+</body>
+ 
+</html>
