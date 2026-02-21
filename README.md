@@ -1,47 +1,55 @@
-# E‑Shop Database — Data Generation + SQL Queries (MySQL + Flask)
+# E-Shop Database — MySQL + Faker Data Generation + Flask JOIN Queries
 
-Undergraduate project that designs and demonstrates an **online store (e‑commerce) relational database**.
+Undergraduate project that designs and demonstrates an **e-commerce relational database** and a small analytics-style UI.
 
-It includes:
-- a **MySQL Workbench model** (`.mwb`) for the schema
-- a Python script that **populates tables with realistic synthetic data** using **Faker**
-- a small **Flask app** that runs **6 multi-table JOIN queries** and renders the outputs as HTML tables
+This repo includes:
+- A **MySQL schema** (forward engineered from Workbench)
+- A **Python data generator** (Faker) that populates the tables with synthetic data
+- A **Flask app** that runs **6 multi-table JOIN queries** and renders results as HTML tables
 
 ## What this project demonstrates
 - Relational modelling (entities, PK/FK relationships)
-- Data generation for testing (Faker + randomised FK references)
-- SQL JOINs across a realistic e‑commerce schema
-- Simple “analytics-style” query pages (Flask + Jinja templates)
+- Synthetic data generation for testing (Faker + randomized FK references)
+- SQL joins across a realistic e-commerce schema
+- Simple query/report pages (Flask + Jinja templates)
 
-## Files
-- `docs/ESHOP DATABASE MODEL(WEDNESDAY).mwb` — schema model (open with MySQL Workbench)
-- `src/populate_db.py` — populate the database with synthetic data
+## Repository structure
+- `sql/schema_workbench.sql` — schema creation script (exported from Workbench)
+- `src/populate_db.py` — populate the DB with synthetic data
 - `src/app.py` — Flask app with `/query/1` … `/query/6`
-- `src/queries.py` — SQL strings used by the app
-- `templates/` — HTML templates for each query page
-- `docs/Contemporary Problem PROPOSAL.docx` and `docs/Contemporary Problem Analysis Presentation.pptx` — coursework artefacts
-- `src/legacy/` — original submission scripts (kept for reference)
+- `src/queries.py` — SQL strings used by the Flask pages
+- `templates/` — HTML templates
+- `docs/` — coursework artifacts + setup notes
 
-## Setup (high level)
-1. Create the MySQL schema (recommended):
-   - Open the `.mwb` model in **MySQL Workbench**
-   - Forward engineer it to a database named `eshop_database`
-2. Create a MySQL user (or reuse your own) with permissions on that database.
-3. Populate data using `src/populate_db.py`.
-4. Run the Flask app and visit the query routes.
+## Schema setup (choose one)
+
+### Option A — MySQL Workbench model (recommended)
+If you have the `.mwb` model file, open it in **MySQL Workbench** and use:
+**Database → Forward Engineer**.
+
+> Note: the schema name must match what your Python scripts connect to.
+> Your scripts default to `eshop_database` (configurable via `MYSQL_DATABASE`).
+
+### Option B — Run the SQL schema script
+1. Create a database in MySQL (example: `eshop_database`)
+2. Run: `sql/schema_workbench.sql` (Workbench or phpMyAdmin)
+
+⚠️ Important: the SQL script currently creates a schema named `ESHOP_Database`.
+You have two easy options:
+- **Set** `MYSQL_DATABASE=ESHOP_Database` in your `.env`, **or**
+- Edit `sql/schema_workbench.sql` and rename the schema to `eshop_database`.
 
 ## Configuration
-This repo reads connection settings from environment variables:
+Create a local `.env` file in the repo root (do not commit it):
 
-- `MYSQL_HOST` (default: `localhost`)
-- `MYSQL_PORT` (default: `3306`)
-- `MYSQL_DATABASE` (default: `eshop_database`)
-- `MYSQL_USER` (default: `test`)
-- `MYSQL_PASSWORD` (default: `test`)
+```env
+MYSQL_HOST=localhost
+MYSQL_PORT=3306
+MYSQL_DATABASE=eshop_database
+MYSQL_USER=test
+MYSQL_PASSWORD=test
 
-You can create a local `.env` file (not committed) with those values.
-
-## Run (example)
+## Install & Run
 ```bash
 pip install -r requirements.txt
 
